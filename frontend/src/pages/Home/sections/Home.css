@@ -1,0 +1,81 @@
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 80px;
+  background: linear-gradient(135deg, #e9f5ef, #f8f9fa);
+  gap: 60px;
+}
+
+.hero-section .text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 520px;
+  padding: 50px 40px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(45, 106, 79, 0.15);
+  border: none;
+  font-family: "Outfit";
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-top: 20px;
+  text-align: center;
+  color: #4a4a4a;
+  font-size: large;
+  font-weight: 600;
+}
+
+.hero-section .image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 300px;
+}
+
+.hero-image {
+  height: 300px;
+  width: 500px;
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease;
+}
+
+.hero-image:hover {
+  transform: translateY(-8px);
+}
+
+.button-register {
+  margin-top: 30px;
+  width: 220px;
+  height: 55px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #2d6a4f, #40916c);
+  border-radius: 14px;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 10px 20px rgba(45, 106, 79, 0.35);
+  transition: all 0.3s ease;
+}
+
+.button-register:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(45, 106, 79, 0.45);
+}
+
+.food-image {
+  height: 300px;
+  object-fit: cover;
+  border-radius: 16px;
+  width: 500px;
+}

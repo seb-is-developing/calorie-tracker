@@ -1,2 +1,7 @@
-# calorie-tracker
-Full-stack calorie and activity tracking application built with React, Node.js, and MongoDB.
+# Calorie Tracker (MVP)
+
+Full-stack calorie and activity tracking application.
+
+## Status
+
+MVP in progress.

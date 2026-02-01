@@ -1,5 +1,5 @@
 import express from "express";
-import { register } from "../controllers/auth.controller.js";
+import { register, login } from "../controllers/auth.controller.js";
 console.log("Loading auth routes...");
 
 const router = express.Router();
@@ -8,8 +8,6 @@ const router = express.Router();
 router.post("/register", register);
 
 // POST /api/auth/login
-router.post("/login", (req, res) => {
-  res.status(501).json({ message: "login not implemented yet" });
-});
+router.post("/login", login);
 
 export default router;

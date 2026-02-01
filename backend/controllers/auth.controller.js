@@ -47,3 +47,46 @@ export const register = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    // 1. Basic validation
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "Email and password are required",
+      });
+    }
+    // 2. Find user by email
+    const user = await User.findOne({ email: email.toLowerCase() }).select(
+      "+password",
+    );
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email " });
+    }
+
+    const passwordMatch = await user.comparePassword(password);
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Invalid password" });
+    }
+
+    // 3. Create JWT
+    const token = signToken({ id: user._id });
+
+    // 4. Respond
+    res.status(200).json({
+      message: "Login successful",
+      token,
+      user: {
+        id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        userName: user.userName,
+      },
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};

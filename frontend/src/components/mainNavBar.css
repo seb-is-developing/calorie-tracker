@@ -1,0 +1,66 @@
+/* NAVBAR */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 60px;
+
+  background: rgba(27, 67, 50, 0.9); /* dark green slate */
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* LOGO / BRAND */
+.nav-logo {
+  font-family: "Outfit";
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #e9f5ef;
+  cursor: pointer;
+}
+
+/* NAV LINKS CONTAINER */
+.nav-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  margin: 0;
+  list-style: none;
+}
+
+/* NAV LINKS */
+.nav-links a {
+  font-family: "Outfit";
+  font-size: 1rem;
+  font-weight: 500;
+  color: #e9f5ef;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+/* UNDERLINE ANIMATION */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #95d5b2, #52b788);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #b7e4c7;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}

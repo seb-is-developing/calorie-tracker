@@ -1,0 +1,91 @@
+/* STORY SECTION */
+.story-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120px 40px;
+  background: linear-gradient(135deg, #e9f5ef, #f8f9fa);
+  gap: 40px;
+}
+
+/* STORY TITLE */
+.story-title {
+  font-family: "Outfit";
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2d6a4f;
+  text-shadow: 0 6px 20px rgba(45, 106, 79, 0.25);
+  text-decoration: none;
+}
+
+/* STORY CARD (GLASS STYLE) */
+.story-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 540px;
+  padding: 45px 55px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(45, 106, 79, 0.15);
+  border: none;
+  text-align: center;
+  gap: 16px;
+}
+
+/* STORY NAME */
+.story-name {
+  font-family: "Outfit";
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1b4332;
+  text-decoration: none;
+}
+
+/* STORY RESULT / TEXT */
+.story-result {
+  font-family: "Outfit";
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin-bottom: 10px;
+}
+
+/* BUTTON CONTAINER */
+.story-button-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* STORY BUTTONS */
+.story-buttons {
+  height: 48px;
+  width: 160px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-family: "Outfit";
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #2d6a4f, #40916c);
+  box-shadow: 0 10px 20px rgba(45, 106, 79, 0.35);
+  transition: all 0.3s ease;
+  margin-right: 5px;
+}
+
+/* BUTTON HOVER */
+.story-buttons:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(45, 106, 79, 0.45);
+}
+
+/* ACTIVE STORY BUTTON (OPTIONAL) */
+.story-buttons.active {
+  background: linear-gradient(135deg, #1b4332, #2d6a4f);
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.25);
+}

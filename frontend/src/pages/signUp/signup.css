@@ -1,0 +1,135 @@
+/* SIGN UP PAGE WRAPPER */
+.sign-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  padding: 40px;
+  background: linear-gradient(135deg, #e9f5ef, #f8f9fa);
+}
+
+/* SIGN UP FORM CARD */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 70px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(45, 106, 79, 0.15);
+  width: 100%;
+  max-width: 460px;
+}
+
+/* TITLE */
+.form-title {
+  font-family: "Outfit";
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d6a4f;
+  margin-bottom: 30px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 6px 20px rgba(45, 106, 79, 0.25);
+}
+
+/* FIELD GROUP */
+.fields {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+}
+
+/* LABELS */
+.label {
+  font-family: "Outfit";
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1b4332;
+}
+
+/* INPUTS */
+.input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid #dcdcdc;
+  font-family: "Outfit";
+  font-size: 1rem;
+  transition: all 0.45s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.2);
+  border-radius: 100px;
+}
+
+/* SUBMIT BUTTON */
+.submit-button {
+  margin-top: 25px;
+  height: 52px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-family: "Outfit";
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #2d6a4f, #40916c);
+  box-shadow: 0 10px 20px rgba(45, 106, 79, 0.35);
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(45, 106, 79, 0.45);
+}
+
+/* OPTIONAL HELP / SOCIAL SECTIONS */
+.help-section,
+.social-media {
+  margin-top: 20px;
+  font-family: "Outfit";
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.log-in-link {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.log-in-label {
+  font-family: "Outfit";
+  font-size: 1rem;
+  color: #4a4a4a;
+  text-decoration: underline;
+}
+
+.log-in-button {
+  height: 48px;
+  width: 200px;
+  border-radius: 14px;
+  border: none;
+  font-family: "Outfit";
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #2d6a4f;
+  background-color: transparent;
+  border: 2px solid #2d6a4f;
+  transition: all 0.3s ease;
+}
+
+.log-in-button:hover {
+  background-color: #2d6a4f;
+  color: white;
+}

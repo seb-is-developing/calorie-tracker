@@ -6,7 +6,7 @@ import food from "../../../images/stock.jpg";
 export default function HeroSection() {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(pathConfig.logIn);
+    navigate(pathConfig.signUp);
   };
   return (
     <div className="hero-section">

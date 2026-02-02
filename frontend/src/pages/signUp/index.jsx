@@ -146,6 +146,18 @@ export default function SignUp() {
             >
               READY
             </button>
+            <div className="log-in-link">
+              <label className="log-in-label">
+                Already have an account? Click here to log in
+              </label>
+              <button
+                className="log-in-button"
+                type="button"
+                onClick={() => navigate(pathConfig.logIn)}
+              >
+                LOG IN
+              </button>
+            </div>
           </div>
         </form>
       </div>

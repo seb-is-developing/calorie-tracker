@@ -28,7 +28,6 @@ MVP in progress.
 -JWT authentication
 -bcrypt
 
-
 ## Features
 -User authentication (signup & login)
 -JWT based auth 

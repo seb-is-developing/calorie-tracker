@@ -48,6 +48,7 @@ const userSchema = new mongoose.Schema(
       height: { type: Number, min: 100, max: 250 }, // cm
       weight: { type: Number, min: 30, max: 300 }, // kg
       totalExercise: { type: String },
+      gender: { type: String, enum: ["male", "female"], default: "male" },
     },
 
     userCalories: {
@@ -97,7 +98,6 @@ userSchema.pre("save", async function () {
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };
-
 
 const User = mongoose.model("User", userSchema);
 

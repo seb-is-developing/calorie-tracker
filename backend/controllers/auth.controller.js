@@ -28,7 +28,7 @@ export const register = async (req, res) => {
     });
 
     // 4. Create JWT
-    const token = signToken({ id: user._id }, {expiresIn: '7d'});
+    const token = signToken({ id: user._id }, { expiresIn: "7d" });
 
     // 5. Respond
     res.status(201).json({
@@ -71,7 +71,7 @@ export const login = async (req, res) => {
     }
 
     // 3. Create JWT
-    const token = signToken({ id: user._id }, {expiresIn: '7d'});
+    const token = signToken({ id: user._id }, { expiresIn: "7d" });
 
     // 4. Respond
     res.status(200).json({
@@ -91,3 +91,12 @@ export const login = async (req, res) => {
   }
 };
 
+export const getAllUsers = async (req, res) => {
+  try {
+    const getUsers = await User.find();
+    res.status(200).json(getUsers);
+  } catch (error) {
+    console.error("Get all users error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};

@@ -22,11 +22,10 @@ export default function Stories() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [storyName, setStoryName] = useState(stories[selectedIndex].name);
   const [storyResult, setStoryResult] = useState(stories[selectedIndex].result);
-  const [isActive, setIsActive] = useState(false);
   const handleClick = (i) => {
+    setSelectedIndex(i);
     setStoryResult(stories[i].result);
     setStoryName(stories[i].name);
-    
   };
 
 
@@ -37,12 +36,11 @@ export default function Stories() {
         <div className="story-description">
           <h2 className="story-name">{storyName}</h2>
           <p className="story-result">{storyResult}</p>
-          <div className="container-buttons">
+          <div className="story-button-group">
             {stories.map((element, index) => {
-              console.log(index);
               return (
                 <button
-                  className={`story-buttons${isActive ? "-active" : ""}`}
+                  className={`story-buttons${selectedIndex === index ? " active" : ""}`}
                   onClick={() => handleClick(index)}
                   key={index}
                 >

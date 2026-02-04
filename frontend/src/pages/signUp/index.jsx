@@ -62,7 +62,7 @@ export default function SignUp() {
       setSubmitError(err.message || "Failed to create user");
     } finally {
       setIsSubmitting(false);
-      navigate(pathConfig.login);
+      navigate(pathConfig.dashboard);
     }
   };
 

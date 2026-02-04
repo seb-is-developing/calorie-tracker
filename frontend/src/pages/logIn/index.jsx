@@ -47,7 +47,7 @@ export default function LogIn() {
       if (data?.token) {
         localStorage.setItem("token", data.token);
       }
-      navigate(pathConfig.home);
+      navigate(pathConfig.dashboard);
     } catch (err) {
       setSubmitError(err.message || "Failed to log in");
     } finally {

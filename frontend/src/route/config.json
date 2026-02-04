@@ -1,5 +1,6 @@
 {
   "home": "/",
   "login": "/login",
-  "signUp": "/register"
+  "signUp": "/register",
+  "dashboard": "/dashboard"
 }

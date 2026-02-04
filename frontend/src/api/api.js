@@ -26,3 +26,21 @@ export async function logInUser(credentials) {
   }
   return resData;
 }
+
+export async function updateBodyStats(bodyStats, token) {
+  const res = await fetch(`${BASE_URL}/api/users/update`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(bodyStats),
+  });
+  const resData = await res.json();
+  if (!res.ok) {
+    throw new Error(resData.message || "Failed to update body stats");
+  }
+  return resData;
+}
+
+

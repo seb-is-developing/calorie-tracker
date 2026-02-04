@@ -4,9 +4,7 @@ import pathConfig from "../route/config.json";
 export default function MainNavBar() {
   const navItems = [
     { name: "Home", path: pathConfig.home },
-    { name: "Log-in", path: pathConfig.logIn },
-    { name: "Contact Us", path: pathConfig.contactUs },
-    { name: "Blog", path: pathConfig.blog },
+    { name: "Log-in", path: pathConfig.login },
   ];
 
   return (

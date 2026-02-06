@@ -1,4 +1,4 @@
-import { getMe } from "../../api/api";
+import { getMe } from "../../../api/api";
 import { useEffect, useState } from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import "./chart.css";

@@ -63,3 +63,29 @@ export async function updateBodyStats(bodyStats, token) {
   }
   return resData;
 }
+
+export function addConsumedCalories(payload) {
+  return authfetch("/api/users/consumed-calories", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
+export function deleteConsumedCalories(consumedId) {
+  return authfetch(`/api/users/consumed-calories/${consumedId}`, {
+    method: "DELETE",
+  });
+}
+
+export function addExerciseCalories(payload) {
+  return authfetch("/api/users/exercise-calories", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
+export function deleteExerciseCalories(exerciseId) {
+  return authfetch(`/api/users/exercise-calories/${exerciseId}`, {
+    method: "DELETE",
+  });
+}

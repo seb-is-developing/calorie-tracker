@@ -1,0 +1,164 @@
+/* PAGE BACKGROUND */
+.info-background {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e9f5ef, #f8f9fa);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* MAIN CARD */
+.info {
+  width: 100%;
+  max-width: 1100px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 28px;
+  box-shadow: 0 20px 40px rgba(45, 106, 79, 0.15);
+  display: flex;
+  padding: 30px;
+  gap: 30px;
+}
+
+/* LEFT SIDE */
+.submission-info {
+  flex: 1;
+}
+
+/* SECTION HEADERS */
+.sub-header-info h2 {
+  font-family: "Outfit";
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2d6a4f;
+  margin: 20px 0;
+  text-decoration: none;
+  text-shadow: 0 6px 20px rgba(45, 106, 79, 0.25);
+}
+
+/* FORM CARD */
+.info-submit {
+  background: rgba(233, 245, 239, 0.7);
+  border-radius: 22px;
+  overflow: hidden; /* clips scrollbar */
+  margin-bottom: 30px;
+  box-shadow: inset 0 0 0 1px rgba(45, 106, 79, 0.15);
+  padding: 0; /* remove padding here */
+  height: 320px;
+}
+
+/* Inner scrollable area */
+.info-submit-scroll {
+  max-height: 470px;
+  overflow-y: auto;
+  padding: 20px;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(45, 106, 79, 0.4) transparent;
+}
+
+/* INPUT ROW */
+.inputFields {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* INPUTS */
+.info-input {
+  flex: 1;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid #dcdcdc;
+  font-family: "Outfit";
+  font-size: 1rem;
+  transition: all 0.25s ease;
+}
+
+.info-input:focus {
+  outline: none;
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.2);
+  border-radius: 100px;
+}
+
+/* SUBMIT BUTTON */
+.info-button {
+  height: 44px;
+  width: 110px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-family: "Outfit";
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #2d6a4f, #40916c);
+  box-shadow: 0 10px 20px rgba(45, 106, 79, 0.35);
+  transition: all 0.3s ease;
+}
+
+.info-button:hover {
+  transform: translateY(2px);
+  box-shadow: 0 15px 30px rgba(45, 106, 79, 0.45);
+}
+
+/* FOOD / EXERCISE CARD */
+.foodlist {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 15px;
+  box-shadow: 0 10px 25px rgba(45, 106, 79, 0.12);
+}
+
+/* TEXT */
+.foodName-font,
+.calories-font {
+  font-family: "Outfit";
+  font-weight: 600;
+  color: #1b4332;
+  margin: 0;
+}
+
+.food-description,
+.calories-description {
+  font-family: "Outfit";
+  color: #4a4a4a;
+  margin-bottom: 6px;
+}
+
+/* DELETE BUTTON */
+.delete-food-button {
+  margin-top: 10px;
+  height: 40px;
+  width: 120px;
+  border-radius: 14px;
+  border: none;
+  font-family: "Outfit";
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #2d6a4f;
+  background: transparent;
+  border: 2px solid #2d6a4f;
+  transition: all 0.3s ease;
+}
+
+.delete-food-button:hover {
+  background-color: #e63946;
+  border-color: #e63946;
+  color: white;
+}
+
+/* SCROLLBAR CLEANUP */
+.info-submit::-webkit-scrollbar {
+  width: 6px;
+}
+
+.info-submit::-webkit-scrollbar-thumb {
+  background: rgba(45, 106, 79, 0.4);
+  border-radius: 10px;
+}

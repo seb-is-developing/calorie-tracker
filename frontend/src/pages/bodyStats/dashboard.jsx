@@ -23,8 +23,6 @@ export default function Dashboard() {
       ...prev,
       [name]: value,
     }));
-    if (submitError) setSubmitError("");
-    if (submitSuccess) setSubmitSuccess("");
   };
 
   const toNumberOrUndefined = (value) => {

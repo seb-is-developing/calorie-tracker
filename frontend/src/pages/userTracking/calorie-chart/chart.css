@@ -1,0 +1,27 @@
+.pie-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin-top: 250px;
+  border: none;
+}
+
+.pie-center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  font-family: "Outfit";
+}
+
+.pie-center-text strong {
+  font-size: 28px;
+  display: block;
+}
+
+.pie-center-text span {
+  font-size: 14px;
+  color: #666;
+}

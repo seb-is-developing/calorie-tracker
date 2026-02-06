@@ -58,11 +58,11 @@ export default function SignUp() {
       if (data?.token) {
         localStorage.setItem("token", data.token);
       }
+      navigate(pathConfig.dashboard);
     } catch (err) {
       setSubmitError(err.message || "Failed to create user");
     } finally {
       setIsSubmitting(false);
-      navigate(pathConfig.dashboard);
     }
   };
 

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { updateBodyStats } from "../../api/api";
 import "./dashboard.css";
+import { useNavigate } from "react-router-dom";
+import pathConfig from "../../route/config.json";
 
 export default function Dashboard() {
   const [userMeasurements, setUserMeasurements] = useState({
@@ -13,6 +15,7 @@ export default function Dashboard() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,6 +55,7 @@ export default function Dashboard() {
       };
       await updateBodyStats(payload, token);
       setSubmitSuccess("Body stats updated successfully.");
+      navigate(pathConfig.chart);
     } catch (error) {
       setSubmitError(error.message || "Failed to update body stats");
     } finally {
@@ -71,7 +75,7 @@ export default function Dashboard() {
             value={userMeasurements.age}
             onChange={handleChange}
           />
-          <label className="measurement-label">HEIGHT</label>
+          <label className="measurement-label">HEIGHT(CM)</label>
           <input
             className="measurement-input"
             name="height"
@@ -79,7 +83,7 @@ export default function Dashboard() {
             value={userMeasurements.height}
             onChange={handleChange}
           />
-          <label className="measurement-label">WEIGHT(kg)</label>
+          <label className="measurement-label">WEIGHT(KG)</label>
           <input
             className="measurement-input"
             name="weight"

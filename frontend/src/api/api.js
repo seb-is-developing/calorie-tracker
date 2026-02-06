@@ -1,5 +1,26 @@
 const BASE_URL = import.meta.env.VITE_API_URL;
 
+async function autFetch(path, options = {}) {
+  const token = localStorage.getItem("token");
+  const res = await fetch(`${BASE_URL}${path}`, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...(options.headers || {}),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+  });
+  const resData = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(resData.message || "API request failed");
+  }
+  return resData;
+}
+
+export function getMe() {
+  return autFetch("/api/users/me", { method: "GET" });
+}
+
 export async function createUser(userData) {
   const res = await fetch(`${BASE_URL}/api/auth/register`, {
     method: "POST",
@@ -42,5 +63,3 @@ export async function updateBodyStats(bodyStats, token) {
   }
   return resData;
 }
-
-

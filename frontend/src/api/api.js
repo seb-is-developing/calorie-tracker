@@ -1,6 +1,6 @@
 const BASE_URL = import.meta.env.VITE_API_URL;
 
-async function autFetch(path, options = {}) {
+async function authfetch(path, options = {}) {
   const token = localStorage.getItem("token");
   const res = await fetch(`${BASE_URL}${path}`, {
     ...options,
@@ -18,7 +18,7 @@ async function autFetch(path, options = {}) {
 }
 
 export function getMe() {
-  return autFetch("/api/users/me", { method: "GET" });
+  return authfetch("/api/users/me", { method: "GET" });
 }
 
 export async function createUser(userData) {

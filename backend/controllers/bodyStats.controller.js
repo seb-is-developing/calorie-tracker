@@ -49,7 +49,7 @@ export const addConsumedCalories = async (req, res) => {
   try {
     const { consumedId, name, total } = req.body;
 
-    if (!consumedId || !name || !total) {
+    if (!consumedId || !name || total === null) {
       return res
         .status(400)
         .json({ message: "Please provide all required fields" });
@@ -109,7 +109,7 @@ export const addExerciseCalories = async (req, res) => {
   try {
     const { exerciseId, exerciseName, totalExercise } = req.body;
 
-    if (!exerciseId || !exerciseName || !totalExercise) {
+    if (!exerciseId || !exerciseName || totalExercise === null) {
       return res
         .status(400)
         .json({ message: "Please provide all required fields" });

@@ -18,9 +18,17 @@ router.put("/update", protect, updateBodyStats);
 
 //Consumed Calrories
 router.post("/consumed-calories", protect, addConsumedCalories);
-router.delete("/consumed-calories/:id", protect, deleteConsumedCalories);
+router.delete(
+  "/consumed-calories/:consumedId",
+  protect,
+  deleteConsumedCalories,
+);
 
 //Exercise Calories
 router.post("/exercise-calories", protect, addExerciseCalories);
-router.delete("/exercise-calories/:id", protect, deleteExerciseCalories);
+router.delete(
+  "/exercise-calories/:exerciseId",
+  protect,
+  deleteExerciseCalories,
+);
 export default router;

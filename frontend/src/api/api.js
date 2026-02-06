@@ -63,3 +63,4 @@ export async function updateBodyStats(bodyStats, token) {
   }
   return resData;
 }
+

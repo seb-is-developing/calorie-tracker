@@ -82,6 +82,11 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
+
+    lastResetDate: {
+      type: Date,
+      default: "",
+    },
   },
   {
     timestamps: true,

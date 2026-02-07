@@ -2,7 +2,7 @@ import { getMe } from "../../../api/api";
 import { useEffect, useState } from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import "./chart.css";
-export default function Chart() {
+export default function Chart({ user }) {
   const [userData, setUserData] = useState(null);
   const [loading, setIsloading] = useState(false);
 
@@ -19,11 +19,8 @@ export default function Chart() {
       }
     };
     fetchUserData();
-  }, []);
+  }, [user]);
 
-  if (loading) {
-    return <div className="loading">Loading...</div>;
-  }
   if (!userData) {
     return <div className="failed">Failed to load user data.</div>;
   }
@@ -57,11 +54,37 @@ export default function Chart() {
 
   const targetCalories = Math.round(totalCalories());
 
+  const consumedCalories = userData.consumedCalories.reduce(
+    (sum, item) => sum + item.total,
+    0,
+  );
+
+  const exerciseCalories = userData.amountOfExercise.reduce(
+    (sum, item) => sum + item.totalExercise,
+    0,
+  );
+
+  const remainingCalories =
+    targetCalories - consumedCalories + exerciseCalories;
+
   const pieData = [
     {
       id: 0,
-      value: targetCalories,
+      value: remainingCalories,
       color: "rgb(62, 219, 0)",
+      label: "Target Calories",
+    },
+    {
+      id: 1,
+      value: consumedCalories,
+      color: "rgb(219, 62, 0)",
+      label: "Consumed Calories",
+    },
+    {
+      id: 2,
+      value: exerciseCalories,
+      color: "rgb(0, 62, 219)",
+      label: "Exercise Calories",
     },
   ];
 
@@ -86,7 +109,7 @@ export default function Chart() {
         />
         {userData.bodyStats && (
           <div className="pie-center-text">
-            <strong>{targetCalories}</strong>
+            <strong>{remainingCalories}</strong>
             <span>kcal</span>
           </div>
         )}

@@ -13,7 +13,7 @@ import {
 export default function UserTracking() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const [refreshKey, setRefreshKey] = useState(0);
   // Food form
   const [foodName, setFoodName] = useState("");
   const [foodCalories, setFoodCalories] = useState("");
@@ -27,6 +27,7 @@ export default function UserTracking() {
     try {
       const data = await getMe();
       setUser(data.user);
+      setRefreshKey((prev) => prev + 1);
     } catch (e) {
       console.error(e);
       setUser(null);
@@ -186,7 +187,7 @@ export default function UserTracking() {
         </form>
       </div>
 
-      <Chart />
+      <Chart user={user} />
     </div>
   );
 }

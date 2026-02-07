@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import { rollOverIfNewDay } from "../utils/rollover.js";
 
 export const updateBodyStats = async (req, res) => {
   try {
@@ -38,6 +39,7 @@ export const getMe = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+    await rollOverIfNewDay(user);
     res.status(200).json({ user });
   } catch (error) {
     console.error("Get me error:", error);
@@ -161,5 +163,100 @@ export const deleteExerciseCalories = async (req, res) => {
   } catch (error) {
     console.error("Delete exercise calories error:", error);
     res.status(500).json({ message: "Server error" });
+  }
+};
+
+const isoDay = (d = new Date()) => d.toISOString().split("T")[0];
+
+const yesterdayIso = () => {
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  return isoDay(d);
+};
+
+export const getCaloriesSummary = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user || !user.bodyStats) {
+      return res
+        .status(404)
+        .json({ message: "User not found / bodyStats missing" });
+    }
+
+    const today = isoDay();
+    const yday = yesterdayIso();
+
+    const lastResetIso = user.lastResetDate ? isoDay(user.lastResetDate) : null;
+
+    if (lastResetIso !== today) {
+      const consumedTotalYesterday = (user.consumedCalories || []).reduce(
+        (sum, item) => sum + Number(item.total || 0),
+        0,
+      );
+
+      // prevent duplicates for yesterday
+      const existing = (user.totalConsumedCalories || []).find(
+        (d) => d.date === yday,
+      );
+      if (existing) {
+        existing.consumedTotal = consumedTotalYesterday;
+      } else {
+        user.totalConsumedCalories.push({
+          date: yday,
+          consumedTotal: consumedTotalYesterday,
+        });
+      }
+
+      // reset daily arrays
+      user.consumedCalories = [];
+      user.amountOfExercise = [];
+
+      user.lastResetDate = new Date();
+
+      await user.save();
+    }
+
+    const { weight, height, age, totalExercise, gender } = user.bodyStats;
+
+    const bmr =
+      weight * 10 + 6.25 * height - 5 * age + (gender === "female" ? -161 : 5);
+
+    const activityMultiplier =
+      totalExercise === "veryLittle"
+        ? 1.2
+        : totalExercise === "light"
+          ? 1.375
+          : totalExercise === "moderate"
+            ? 1.55
+            : totalExercise === "active"
+              ? 1.725
+              : 1.2;
+
+    const targetCalories = Math.round(bmr * activityMultiplier - 300);
+
+    const consumedCalories = (user.consumedCalories || []).reduce(
+      (sum, item) => sum + Number(item.total || 0),
+      0,
+    );
+
+    const exerciseCalories = (user.amountOfExercise || []).reduce(
+      (sum, item) => sum + Number(item.totalExercise || 0),
+      0,
+    );
+
+    const remainingCalories =
+      targetCalories - consumedCalories + exerciseCalories;
+
+    return res.status(200).json({
+      date: today,
+      targetCalories,
+      consumedCalories,
+      exerciseCalories,
+      remainingCalories,
+      history: user.totalConsumedCalories || [],
+    });
+  } catch (error) {
+    console.error("Get calories summary error:", error);
+    return res.status(500).json({ message: "Server error" });
   }
 };

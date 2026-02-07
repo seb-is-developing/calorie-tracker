@@ -4,6 +4,7 @@ import {
   updateBodyStats,
   addConsumedCalories,
   addExerciseCalories,
+  getCaloriesSummary,
   deleteConsumedCalories,
   deleteExerciseCalories,
 } from "../controllers/bodyStats.controller.js";
@@ -12,7 +13,7 @@ const router = express.Router();
 
 // GET /api/users/me
 router.get("/me", protect, getMe);
-
+router.get("/summary", protect, getCaloriesSummary);
 // PUT /api/users/update
 router.put("/update", protect, updateBodyStats);
 
@@ -31,4 +32,5 @@ router.delete(
   protect,
   deleteExerciseCalories,
 );
+
 export default router;

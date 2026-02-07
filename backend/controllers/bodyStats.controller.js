@@ -178,21 +178,26 @@ export const getCaloriesSummary = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     if (!user || !user.bodyStats) {
-      return res.status(404).json({ message: "User not found / bodyStats missing" });
+      return res
+        .status(404)
+        .json({ message: "User not found / bodyStats missing" });
     }
 
     const today = isoDay();
     const yday = yesterdayIso();
 
-  
-    if (user.lastResetDate !== today) {
+    const lastResetIso = user.lastResetDate ? isoDay(user.lastResetDate) : null;
+
+    if (lastResetIso !== today) {
       const consumedTotalYesterday = (user.consumedCalories || []).reduce(
         (sum, item) => sum + Number(item.total || 0),
-        0
+        0,
       );
 
       // prevent duplicates for yesterday
-      const existing = (user.totalConsumedCalories || []).find((d) => d.date === yday);
+      const existing = (user.totalConsumedCalories || []).find(
+        (d) => d.date === yday,
+      );
       if (existing) {
         existing.consumedTotal = consumedTotalYesterday;
       } else {
@@ -206,12 +211,11 @@ export const getCaloriesSummary = async (req, res) => {
       user.consumedCalories = [];
       user.amountOfExercise = [];
 
-      user.lastResetDate = today;
+      user.lastResetDate = new Date();
 
       await user.save();
     }
 
-    
     const { weight, height, age, totalExercise, gender } = user.bodyStats;
 
     const bmr =
@@ -232,15 +236,16 @@ export const getCaloriesSummary = async (req, res) => {
 
     const consumedCalories = (user.consumedCalories || []).reduce(
       (sum, item) => sum + Number(item.total || 0),
-      0
+      0,
     );
 
     const exerciseCalories = (user.amountOfExercise || []).reduce(
       (sum, item) => sum + Number(item.totalExercise || 0),
-      0
+      0,
     );
 
-    const remainingCalories = targetCalories - consumedCalories + exerciseCalories;
+    const remainingCalories =
+      targetCalories - consumedCalories + exerciseCalories;
 
     return res.status(200).json({
       date: today,
@@ -255,4 +260,3 @@ export const getCaloriesSummary = async (req, res) => {
     return res.status(500).json({ message: "Server error" });
   }
 };
-

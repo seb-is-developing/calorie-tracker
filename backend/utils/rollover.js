@@ -8,7 +8,8 @@ const yesterdayIsoDay = () => {
 
 export const rollOverIfNewDay = async (user) => {
   const today = isoDay();
-  if (user.lastResetDate === today) return false;
+  const lastResetIso = user.lastResetDate ? isoDay(user.lastResetDate) : null;
+  if (lastResetIso === today) return false;
 
   const yday = yesterdayIsoDay();
 
@@ -29,13 +30,12 @@ export const rollOverIfNewDay = async (user) => {
     });
   }
 
-  user.consumeCalories = [];
+  user.consumedCalories = [];
   user.amountOfExercise = [];
 
-  user.lastResetDate = today;
+  user.lastResetDate = new Date();
 
   await user.save();
 
   return true;
 };
-

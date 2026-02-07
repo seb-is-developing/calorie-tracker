@@ -17,8 +17,6 @@ router.get("/summary", protect, getCaloriesSummary);
 // PUT /api/users/update
 router.put("/update", protect, updateBodyStats);
 
-
-
 //Consumed Calrories
 router.post("/consumed-calories", protect, addConsumedCalories);
 router.delete(
@@ -27,8 +25,6 @@ router.delete(
   deleteConsumedCalories,
 );
 
-
-
 //Exercise Calories
 router.post("/exercise-calories", protect, addExerciseCalories);
 router.delete(
@@ -36,4 +32,5 @@ router.delete(
   protect,
   deleteExerciseCalories,
 );
+
 export default router;

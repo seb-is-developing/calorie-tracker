@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./tracking.css";
 import Chart from "../calorie-chart/Chart";
+import ConsumedCalorie from "../consumedCalorie-chart/consumedCalorie";
 import {
   getMe,
   addConsumedCalories,
@@ -9,6 +10,7 @@ import {
   addExerciseCalories,
   deleteExerciseCalories,
 } from "../../../api/api";
+import Footer from "../../../components/footer";
 
 export default function UserTracking() {
   const [user, setUser] = useState(null);
@@ -81,113 +83,119 @@ export default function UserTracking() {
   const exercise = user.amountOfExercise || [];
 
   return (
-    <div className="info">
-      <div className="submission-info">
-        <div className="sub-header-info">
-          <h2>TIME TO TRACK!</h2>
-        </div>
+    <>
+      <div className="info">
+        <div className="submission-info">
+          <div className="sub-header-info">
+            <h2>TIME TO TRACK!</h2>
+          </div>
 
-        <form onSubmit={onSubmitFood} className="info-submit">
-          <div className="info-submit-scroll">
-            <div className="inputFields">
-              <input
-                placeholder="Enter your Food"
-                value={foodName}
-                onChange={(e) => setFoodName(e.target.value)}
-                className="info-input"
-                required
-                maxLength={100}
-              />
+          <form onSubmit={onSubmitFood} className="info-submit">
+            <div className="info-submit-scroll">
+              <div className="inputFields">
+                <input
+                  placeholder="Enter your Food"
+                  value={foodName}
+                  onChange={(e) => setFoodName(e.target.value)}
+                  className="info-input"
+                  required
+                  maxLength={100}
+                />
 
-              <input
-                placeholder="Enter calories"
-                type="number"
-                value={foodCalories}
-                onChange={(e) => setFoodCalories(e.target.value)}
-                className="info-input"
-                required
-              />
+                <input
+                  placeholder="Enter calories"
+                  type="number"
+                  value={foodCalories}
+                  onChange={(e) => setFoodCalories(e.target.value)}
+                  className="info-input"
+                  required
+                />
 
-              <button type="submit" className="info-button">
-                Submit
-              </button>
-            </div>
-
-            {consumedCal.map((food) => (
-              <div key={food.consumedId} className="foodlist">
-                <p className="foodName-font">
-                  <strong>Food Name : </strong>
-                </p>
-                <p className="food-description">{food.name}</p>
-                <p className="calories-font">
-                  <strong>Calories :</strong>
-                </p>
-                <p className="calories-description">{food.total} kcal</p>
-                <button
-                  className="delete-food-button"
-                  type="button"
-                  onClick={() => onDeleteFood(food.consumedId)}
-                >
-                  Delete
+                <button type="submit" className="info-button">
+                  Submit
                 </button>
               </div>
-            ))}
-          </div>
-        </form>
 
-        <div className="sub-header-info">
-          <h2>TRACK YOUR EXERCISE</h2>
-        </div>
-
-        <form onSubmit={onSubmitExercise} className="info-submit">
-          <div className="info-submit-scroll">
-            <div className="inputFields">
-              <input
-                placeholder="Enter your Workout"
-                value={exerciseName}
-                onChange={(e) => setExerciseName(e.target.value)}
-                className="info-input"
-                required
-              />
-
-              <input
-                placeholder="Enter calories"
-                type="number"
-                value={exerciseCalories}
-                onChange={(e) => setExerciseCalories(e.target.value)}
-                className="info-input"
-                required
-              />
-
-              <button type="submit" className="info-button">
-                Submit
-              </button>
+              {consumedCal.map((food) => (
+                <div key={food.consumedId} className="foodlist">
+                  <p className="foodName-font">
+                    <strong>Food Name : </strong>
+                  </p>
+                  <p className="food-description">{food.name}</p>
+                  <p className="calories-font">
+                    <strong>Calories :</strong>
+                  </p>
+                  <p className="calories-description">{food.total} kcal</p>
+                  <button
+                    className="delete-food-button"
+                    type="button"
+                    onClick={() => onDeleteFood(food.consumedId)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
             </div>
+          </form>
 
-            {exercise.map((ex) => (
-              <div key={ex.exerciseId} className="foodlist">
-                <p className="foodName-font">
-                  <strong>Exercise Name : </strong>
-                </p>
-                <p className="food-description">{ex.exerciseName}</p>
-                <p className="calories-font">
-                  <strong>Calories :</strong>
-                </p>
-                <p className="calories-description">{ex.totalExercise} kcal</p>
-                <button
-                  className="delete-food-button"
-                  type="button"
-                  onClick={() => onDeleteExercise(ex.exerciseId)}
-                >
-                  Delete
+          <div className="sub-header-info">
+            <h2>TRACK YOUR EXERCISE</h2>
+          </div>
+
+          <form onSubmit={onSubmitExercise} className="info-submit">
+            <div className="info-submit-scroll">
+              <div className="inputFields">
+                <input
+                  placeholder="Enter your Workout"
+                  value={exerciseName}
+                  onChange={(e) => setExerciseName(e.target.value)}
+                  className="info-input"
+                  required
+                />
+
+                <input
+                  placeholder="Enter calories"
+                  type="number"
+                  value={exerciseCalories}
+                  onChange={(e) => setExerciseCalories(e.target.value)}
+                  className="info-input"
+                  required
+                />
+
+                <button type="submit" className="info-button">
+                  Submit
                 </button>
               </div>
-            ))}
-          </div>
-        </form>
+
+              {exercise.map((ex) => (
+                <div key={ex.exerciseId} className="foodlist">
+                  <p className="foodName-font">
+                    <strong>Exercise Name : </strong>
+                  </p>
+                  <p className="food-description">{ex.exerciseName}</p>
+                  <p className="calories-font">
+                    <strong>Calories :</strong>
+                  </p>
+                  <p className="calories-description">
+                    {ex.totalExercise} kcal
+                  </p>
+                  <button
+                    className="delete-food-button"
+                    type="button"
+                    onClick={() => onDeleteExercise(ex.exerciseId)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
+            </div>
+          </form>
+        </div>
+        <div>
+          <ConsumedCalorie user={user} />
+          <Chart user={user} />
+        </div>
       </div>
-
-      <Chart user={user} />
-    </div>
+    </>
   );
 }

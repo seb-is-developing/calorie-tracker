@@ -90,11 +90,8 @@ export default function Chart({ user }) {
 
   return (
     <div className="chart-background">
-      <div>
-        <p>some text</p>
-      </div>
-
       <div className="pie-container">
+        <p>target Calories</p>
         <PieChart
           width={300}
           height={300}

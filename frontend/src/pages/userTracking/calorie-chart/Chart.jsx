@@ -90,29 +90,27 @@ export default function Chart({ user }) {
 
   return (
     <div className="chart-background">
-      <div>
-        <p>some text</p>
-      </div>
-
-      <div className="pie-container">
-        <PieChart
-          width={300}
-          height={300}
-          series={[
-            {
-              data: pieData,
-              innerRadius: 90,
-              outerRadius: 120,
-            },
-          ]}
-          hideLegend
-        />
-        {userData.bodyStats && (
-          <div className="pie-center-text">
-            <strong>{remainingCalories}</strong>
-            <span>kcal</span>
-          </div>
-        )}
+      <div className="chart-card">
+        <div className="chart-title">Target Calories</div>
+        <div className="pie-container">
+          <PieChart
+            width={300}
+            height={300}
+            series={[
+              {
+                data: pieData,
+                innerRadius: 90,
+                outerRadius: 120,
+              },
+            ]}
+          />
+          {userData.bodyStats && (
+            <div className="pie-center-text">
+              <strong>{remainingCalories}</strong>
+              <span>kcal</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

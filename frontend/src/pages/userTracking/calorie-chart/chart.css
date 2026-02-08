@@ -1,9 +1,37 @@
+.chart-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.chart-card {
+  width: 390px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: 0 20px 40px rgba(45, 106, 79, 0.15);
+  font-family: "Outfit";
+}
+
+.chart-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #2d6a4f;
+  text-align: center;
+}
+
 .pie-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
-  width: 300px;
+  width: 370px;
   height: 300px;
-  margin-top: 250px;
-  border: none;
+  border-radius: 16px;
+  padding: 8px;
+  background: rgba(233, 245, 239, 0.7);
+  box-shadow: inset 0 0 0 1px rgba(45, 106, 79, 0.12);
 }
 
 .pie-center-text {
@@ -19,9 +47,11 @@
 .pie-center-text strong {
   font-size: 28px;
   display: block;
+  margin-right: 90px;
 }
 
 .pie-center-text span {
   font-size: 14px;
   color: #666;
+  margin-right: 90px;
 }

@@ -1,0 +1,60 @@
+.consumed-card {
+  margin-top: 70px;
+  width: 400px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: 0 20px 40px rgba(45, 106, 79, 0.15);
+  font-family: "Outfit";
+}
+
+.consumed-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.consumed-week-range {
+  font-weight: 600;
+  color: #1b4332;
+}
+
+.consumed-nav-btn {
+  height: 36px;
+  width: 80px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-family: "Outfit";
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #2d6a4f, #40916c);
+  box-shadow: 0 8px 18px rgba(45, 106, 79, 0.25);
+  transition: all 0.3s ease;
+}
+
+.consumed-nav-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+.consumed-nav-btn:hover:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 12px 24px rgba(45, 106, 79, 0.35);
+}
+
+.consumed-chart-wrap {
+  border-radius: 16px;
+  padding: 12px;
+  background: rgba(233, 245, 239, 0.7);
+  box-shadow: inset 0 0 0 1px rgba(45, 106, 79, 0.12);
+}
+
+.consumed-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #2d6a4f;
+}

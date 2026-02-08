@@ -21,6 +21,10 @@ export function getMe() {
   return authfetch("/api/users/me", { method: "GET" });
 }
 
+export function getCaloriesSummary() {
+  return authfetch("/api/users/summary", { method: "GET" });
+}
+
 export async function createUser(userData) {
   const res = await fetch(`${BASE_URL}/api/auth/register`, {
     method: "POST",

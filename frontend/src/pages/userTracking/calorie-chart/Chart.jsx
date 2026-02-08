@@ -103,7 +103,6 @@ export default function Chart({ user }) {
                 outerRadius: 120,
               },
             ]}
-            hideLegend
           />
           {userData.bodyStats && (
             <div className="pie-center-text">

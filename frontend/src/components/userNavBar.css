@@ -1,0 +1,8 @@
+.user-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(27, 67, 50, 0.9); /* dark green slate */
+  padding: 20px;
+  margin-bottom: 70px;
+}

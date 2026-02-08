@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { getCaloriesSummary } from "../../../api/api";
+import "./consumedCaloires.css";
 const isoDay = (d = new Date()) => {
   const year = d.getFullYear();
   const month = String(d.getMonth() + 1).padStart(2, "0");
@@ -107,22 +108,21 @@ export default function ConsumedCalorie() {
   if (err) return <div style={{ color: "crimson" }}>{err}</div>;
 
   return (
-    <div style={{ width: 420 }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: 10,
-        }}
-      >
-        <button onClick={() => setWeekOffset((w) => w - 1)}>Prev</button>
+    <div className="consumed-card">
+      <div className="consumed-controls">
+        <button
+          className="consumed-nav-btn"
+          onClick={() => setWeekOffset((w) => w - 1)}
+        >
+          Prev
+        </button>
 
-        <div style={{ fontWeight: 600 }}>
+        <div className="consumed-week-range">
           {weekStartIso} → {weekEndIso}
         </div>
 
         <button
+          className="consumed-nav-btn"
           onClick={() => setWeekOffset((w) => w + 1)}
           disabled={weekOffset >= 0} // block future weeks (recommended)
         >
@@ -130,16 +130,11 @@ export default function ConsumedCalorie() {
         </button>
       </div>
 
-      <div
-        style={{
-          borderRadius: 16,
-          padding: 14,
-          background: "rgba(255,255,255,0.8)",
-        }}
-      >
-        <div style={{ fontWeight: 700, marginBottom: 8 }}>Consumed (kcal)</div>
+      <div className="consumed-chart-wrap">
+        <div className="consumed-title">Consumed (kcal)</div>
 
         <BarChart
+          sx={{ fontFamily: "Outfit" }}
           height={160}
           xAxis={[
             {

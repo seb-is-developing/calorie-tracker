@@ -1,8 +1,35 @@
 import { useEffect, useMemo, useState } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { getCaloriesSummary } from "../../../api/api";
+const isoDay = (d = new Date()) => {
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
 
-const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const normalizeIsoDay = (value) => {
+  if (!value) return "";
+  if (typeof value === "string") return value.slice(0, 10);
+  if (value instanceof Date) return isoDay(value);
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? "" : isoDay(parsed);
+};
+
+function startOfWeekMonday(date) {
+  const d = new Date(date);
+  const day = d.getDay();
+  const diff = day === 0 ? -6 : 1 - day; // adjust when day is Sunday
+  d.setDate(d.getDate() + diff);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
+function addDays(date, n) {
+  const d = new Date(date);
+  d.setDate(d.getDate() + n);
+  return d;
+}
 
 function isoToWeekdayShort(iso) {
   // iso: "YYYY-MM-DD"
@@ -20,13 +47,14 @@ function isoToWeekdayShort(iso) {
   return map[day];
 }
 
-export default function ConsumedCalorie({ user }) {
+export default function ConsumedCalorie() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
+  const [weekOffset, setWeekOffset] = useState(0);
 
   useEffect(() => {
-    (async () => {
+    const run = async () => {
       try {
         setLoading(true);
         setErr("");
@@ -38,36 +66,107 @@ export default function ConsumedCalorie({ user }) {
       } finally {
         setLoading(false);
       }
-    })();
-  }, [user]);
-
-  const { xLabels, seriesData } = useMemo(() => {
-    // start with Mon–Fri = 0
-    const buckets = Object.fromEntries(WEEKDAYS.map((d) => [d, 0]));
-
-    // Fill buckets from history (latest value for that weekday wins)
-    for (const entry of history) {
-      const day = isoToWeekdayShort(entry.date);
-      if (buckets[day] !== undefined) {
-        buckets[day] = Number(entry.consumedTotal || 0);
-      }
-    }
-
-    return {
-      xLabels: WEEKDAYS,
-      seriesData: WEEKDAYS.map((d) => buckets[d]),
     };
-  }, [history]);
+    run();
+  }, []);
 
+  const { labels, values, weekStartIso, weekEndIso } = useMemo(() => {
+    const today = new Date();
+    const baseWeekStart = startOfWeekMonday(today);
+    const weekStart = addDays(baseWeekStart, weekOffset * 7);
+
+    // Build labels Mon..Sun
+    const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+    // Start values at 0 for each day
+    const values = Array(7).fill(0);
+
+    // Normalize weekStart to midnight (local)
+    const weekStartMidnight = new Date(weekStart);
+    weekStartMidnight.setHours(0, 0, 0, 0);
+
+    (history || []).forEach((h) => {
+      const dateStr = normalizeIsoDay(h.date); // "YYYY-MM-DD"
+      if (!dateStr) return;
+
+      // Convert to a real date at local midnight
+      const d = new Date(dateStr + "T00:00:00");
+      d.setHours(0, 0, 0, 0);
+
+      const diffDays = Math.floor((d - weekStartMidnight) / 86400000);
+      if (diffDays >= 0 && diffDays < 7) {
+        values[diffDays] += Number(h.consumedTotal || 0);
+      }
+    });
+
+    const weekStartIso = isoDay(weekStartMidnight);
+    const weekEndIso = isoDay(addDays(weekStartMidnight, 6));
+
+    return { labels, values, weekStartIso, weekEndIso };
+  }, [history, weekOffset]);
   if (err) return <div style={{ color: "crimson" }}>{err}</div>;
 
   return (
-    <div style={{ width: "100%", maxWidth: 700 }}>
-      <BarChart
-        xAxis={[{ scaleType: "band", data: xLabels }]}
-        series={[{ data: seriesData, label: "Consumed (kcal)" }]}
-        height={320}
-      />
+    <div style={{ width: 420 }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: 10,
+        }}
+      >
+        <button onClick={() => setWeekOffset((w) => w - 1)}>Prev</button>
+
+        <div style={{ fontWeight: 600 }}>
+          {weekStartIso} → {weekEndIso}
+        </div>
+
+        <button
+          onClick={() => setWeekOffset((w) => w + 1)}
+          disabled={weekOffset >= 0} // block future weeks (recommended)
+        >
+          Next
+        </button>
+      </div>
+
+      <div
+        style={{
+          borderRadius: 16,
+          padding: 14,
+          background: "rgba(255,255,255,0.8)",
+        }}
+      >
+        <div style={{ fontWeight: 700, marginBottom: 8 }}>Consumed (kcal)</div>
+
+        <BarChart
+          height={160}
+          xAxis={[
+            {
+              data: labels,
+              scaleType: "band",
+              categoryGapRatio: 0.35, // smaller = thicker bars
+              barGapRatio: 0.15,
+            },
+          ]}
+          series={[
+            {
+              data: values,
+              borderRadius: 8,
+              label: "Consumed (kcal)",
+            },
+          ]}
+          slotProps={{ legend: { hidden: true } }}
+          grid={{ horizontal: false, vertical: false }}
+          yAxis={[
+            {
+              disableLine: true,
+              disableTicks: true,
+            },
+          ]}
+          margin={{ left: 30, right: 10, top: 10, bottom: 30 }}
+        />
+      </div>
     </div>
   );
 }

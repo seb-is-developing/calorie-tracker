@@ -52,3 +52,5 @@ npm run dev
 cd frontend
 npm install
 npm run dev
+
+MADE - BY SEBASTIAN ANTONIO

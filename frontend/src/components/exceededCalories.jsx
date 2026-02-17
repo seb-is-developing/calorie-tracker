@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./exceededCalories.css";
 
-export default function ExceededCalories() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function ExceededCalories({ remainingCalories }) {
+  const [isDismissed, setIsDismissed] = useState(false);
 
-  const onClickHandler = () => {
-    setIsOpen(false);
+  useEffect(() => {
+    if (remainingCalories <= 0) {
+      setIsDismissed(false);
+    }
+  }, [remainingCalories]);
+
+  const handleClose = () => {
+    setIsDismissed(true);
   };
 
-  if (!isOpen) {
-    return null;
-  }
+  if (remainingCalories > 0 || isDismissed) return null;
 
   return (
     <div className="exceeded-calories">
@@ -18,11 +22,10 @@ export default function ExceededCalories() {
         You've exceeded your calorie limit for the day!
       </h2>
       <p className="exceeded-text">
-        Please try to stay within your target calories to maintain a healthy
-        lifestyle.
+        Please try to stay within your target calories to maintain a healthy lifestyle.
       </p>
-      <button className="exceeded-button" onClick={onClickHandler}>
-        Be careful !
+      <button className="exceeded-button" onClick={handleClose}>
+        Be careful!
       </button>
     </div>
   );

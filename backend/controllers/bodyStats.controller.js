@@ -183,8 +183,8 @@ export const getCaloriesSummary = async (req, res) => {
         .json({ message: "User not found / bodyStats missing" });
     }
 
-    const today = "2026-02-08";
-    const yday = "2026-02-07";
+    const today = isoDay();
+    const yday = yesterdayIso();
 
     const lastResetIso = user.lastResetDate ? isoDay(user.lastResetDate) : null;
 

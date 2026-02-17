@@ -10,7 +10,6 @@ import {
   addExerciseCalories,
   deleteExerciseCalories,
 } from "../../../api/api";
-import Footer from "../../../components/footer";
 
 export default function UserTracking() {
   const [user, setUser] = useState(null);

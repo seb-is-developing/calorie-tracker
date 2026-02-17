@@ -17,12 +17,12 @@
 }
 
 /* LOGO / BRAND */
-.nav-logo {
+.logo {
   font-family: "Outfit";
   font-size: 1.6rem;
   font-weight: 700;
   color: #e9f5ef;
-  cursor: pointer;
+  margin: 0;
 }
 
 /* NAV LINKS CONTAINER */

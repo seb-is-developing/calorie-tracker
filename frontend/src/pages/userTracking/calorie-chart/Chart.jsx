@@ -2,6 +2,7 @@ import { getMe } from "../../../api/api";
 import { useEffect, useState } from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import "./chart.css";
+import ExceededCalories from "../../../components/exceededCalories";
 export default function Chart({ user }) {
   const [userData, setUserData] = useState(null);
   const [loading, setIsloading] = useState(false);
@@ -112,6 +113,7 @@ export default function Chart({ user }) {
           )}
         </div>
       </div>
+      <ExceededCalories remainingCalories={remainingCalories} />
     </div>
   );
 }

@@ -10,7 +10,7 @@ export default function MainNavBar() {
   return (
     <>
       <header className="navbar">
-        <div className="logo">MySite</div>
+        <div className="logo">Nutrition Tracker</div>
 
         <ul className="nav-links">
           {navItems.map((item) => (

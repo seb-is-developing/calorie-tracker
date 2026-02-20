@@ -4,7 +4,7 @@ import MainNavBar from "../../components/mainNavBar";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import pathConfig from "../../route/config.json";
-import { logInUser } from "../../api/api";
+import { logInUser, getMe } from "../../api/api";
 
 export default function LogIn() {
   const navigate = useNavigate();
@@ -46,8 +46,19 @@ export default function LogIn() {
       });
       if (data?.token) {
         localStorage.setItem("token", data.token);
+
+        const userData = await getMe();
+        const hasBodyStats =
+          userData?.user?.bodyStats?.age &&
+          userData?.user?.bodyStats?.height &&
+          userData?.user?.bodyStats?.weight;
+
+        if (hasBodyStats) {
+          navigate(pathConfig.chart);
+        } else {
+          navigate(pathConfig.dashboard);
+        }
       }
-      navigate(pathConfig.chart);
     } catch (err) {
       setSubmitError(err.message || "Failed to log in");
     } finally {

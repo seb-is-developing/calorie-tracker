@@ -153,7 +153,7 @@ export default function SignUp() {
               <button
                 className="log-in-button"
                 type="button"
-                onClick={() => navigate(pathConfig.logIn)}
+                onClick={() => navigate(pathConfig.login)}
               >
                 LOG IN
               </button>

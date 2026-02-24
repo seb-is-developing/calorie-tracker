@@ -42,6 +42,13 @@ export default function Dashboard() {
       return;
     }
 
+    // Validate height range
+    const heightValue = toNumberOrUndefined(userMeasurements.height);
+    if (heightValue !== undefined && (heightValue < 100 || heightValue > 250)) {
+      setSubmitError("Height must be between 100 and 250 cm.");
+      return;
+    }
+
     try {
       setIsSubmitting(true);
       const payload = {
@@ -78,6 +85,8 @@ export default function Dashboard() {
             className="measurement-input"
             name="height"
             type="number"
+            min="100"
+            max="250"
             value={userMeasurements.height}
             onChange={handleChange}
           />

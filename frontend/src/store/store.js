@@ -29,5 +29,5 @@ const store = configureStore({
   },
 });
 
-export const { setBodyStats } = bodyStatsSlice.actions;
+export const  setBodyStatsActions = bodyStatsSlice.actions;
 export default store;

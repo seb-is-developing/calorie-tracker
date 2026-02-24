@@ -1,9 +1,18 @@
 import { useSelector, useDispatch } from "react-redux";
+import { setBodyStatsActions } from "../../../store/store";
 import "../../bodyStats/dashboard.css";
 
 export default function GuestDashBoard() {
   const dispatch = useDispatch();
   const bodyStats = useSelector((state) => state.bodyStats);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch(setBodyStatsActions.setBodyStats({ ...bodyStats, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <>
@@ -15,7 +24,7 @@ export default function GuestDashBoard() {
             className="measurement-input"
             name="age"
             type="number"
-            value={userMeasurements.age}
+            value={bodyStats.age || ""}
             onChange={handleChange}
           />
           <label className="measurement-label">HEIGHT(CM)</label>
@@ -25,7 +34,7 @@ export default function GuestDashBoard() {
             type="number"
             min="100"
             max="250"
-            value={userMeasurements.height}
+            value={bodyStats.height || ""}
             onChange={handleChange}
           />
           <label className="measurement-label">WEIGHT(KG)</label>
@@ -33,7 +42,7 @@ export default function GuestDashBoard() {
             className="measurement-input"
             name="weight"
             type="number"
-            value={userMeasurements.weight}
+            value={bodyStats.weight || ""}
             onChange={handleChange}
           />
 
@@ -41,7 +50,7 @@ export default function GuestDashBoard() {
           <select
             className="measurement-input"
             name="totalExercise"
-            value={userMeasurements.totalExercise}
+            value={bodyStats.totalExercise}
             onChange={handleChange}
           >
             <option value="veryLittle">Very Little (0)</option>
@@ -53,22 +62,16 @@ export default function GuestDashBoard() {
           <select
             className="measurement-input"
             name="gender"
-            value={userMeasurements.gender}
+            value={bodyStats.gender}
             onChange={handleChange}
           >
             <option value="male">male</option>
             <option value="female">female</option>
           </select>
 
-          <button
-            className="user-details-submit"
-            type="submit"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Submitting..." : "Submit"}
+          <button className="user-details-submit" type="submit">
+            Submit
           </button>
-          {submitError && <p className="error">{submitError}</p>}
-          {submitSuccess && <p className="success">{submitSuccess}</p>}
         </form>
       </div>
     </>

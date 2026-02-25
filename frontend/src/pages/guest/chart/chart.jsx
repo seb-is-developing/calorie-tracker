@@ -5,6 +5,12 @@ import "../chart/chart.css";
 
 export default function GuestChart() {
   const userData = useSelector((state) => state.bodyStats);
+  const consumedCalories = useSelector(
+    (state) => state.consumedCalories.consumedCalories,
+  );
+  const exerciseCalories = useSelector(
+    (state) => state.exercise.amountOfExercise,
+  );
 
   const totalCalories = () => {
     const { age, height, weight, totalExercise, gender } = userData;
@@ -25,6 +31,38 @@ export default function GuestChart() {
 
     return bmr * activityMultiplier - 300;
   };
+
+  const userCalories = Math.round(totalCalories());
+  const consumedTotalCal = consumedCalories.reduce(
+    (sum, item) => sum + item.calories,
+    0,
+  );
+  const exerciseTotalCal = exerciseCalories.reduce(
+    (sum, item) => sum + item.calories,
+    0,
+  );
+  const remainingCalories = userCalories - consumedTotalCal + exerciseTotalCal;
+
+  const pieData = [
+    {
+      id: 0,
+      value: remainingCalories,
+      color: "rgb(62, 219, 0)",
+      label: "Target Calories",
+    },
+    {
+      id: 1,
+      value: consumedTotalCal,
+      color: "rgb(219, 62, 0)",
+      label: "Consumed Calories",
+    },
+    {
+      id: 2,
+      value: exerciseTotalCal,
+      color: "rgb(0, 62, 219)",
+      label: "Exercise Calories",
+    },
+  ];
 
   return (
     <div className="chart-background">

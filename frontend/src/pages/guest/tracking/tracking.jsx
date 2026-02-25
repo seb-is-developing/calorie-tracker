@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { consumedCaloriesActions } from "../../../store/store";
 import { exerciseActions } from "../../../store/store";
-import ConsumedCalorie from "../../userTracking/consumedCalorie-chart/consumedCalorie";
 import GuestChart from "../chart/chart.jsx";
+import GuestBarChart from "../barchart";
 import { v4 as uuidv4 } from "uuid";
 import "../../userTracking/foodExerciseTracking/tracking.css";
 
@@ -164,8 +164,7 @@ export default function GuestTracking() {
         </div>
         <div>
           <GuestChart />
-          {/* DUMMY BAR CHART FOR GUEST USER */}
-          <ConsumedCalorie />
+          <GuestBarChart />
         </div>
       </div>
     </>

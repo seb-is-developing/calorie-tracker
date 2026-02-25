@@ -3,7 +3,7 @@ import { PieChart } from "@mui/x-charts/PieChart";
 import ExceededCalories from "../../../components/exceededCalories";
 import "../chart/chart.css";
 
-export default function Chart() {
+export default function GuestChart() {
   const userData = useSelector((state) => state.bodyStats);
 
   const totalCalories = () => {
@@ -42,7 +42,7 @@ export default function Chart() {
               },
             ]}
           />
-          {userData.bodyStats && (
+          {userData && (
             <div className="pie-center-text">
               <strong>{remainingCalories}</strong>
               <span>kcal</span>

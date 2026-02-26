@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setBodyStatsActions } from "../../../store/store";
+import { useNavigate } from "react-router-dom";
 import "../../bodyStats/dashboard.css";
-
+import pathConfig from "../../../route/config.json";
 export default function GuestDashBoard() {
   const dispatch = useDispatch();
   const bodyStats = useSelector((state) => state.bodyStats);
@@ -9,9 +10,11 @@ export default function GuestDashBoard() {
     const { name, value } = e.target;
     dispatch(setBodyStatsActions.setBodyStats({ ...bodyStats, [name]: value }));
   };
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate(pathConfig.guestTracking);
   };
 
   return (

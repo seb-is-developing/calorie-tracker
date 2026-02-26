@@ -7,6 +7,7 @@ import Dashboard from "../pages/bodyStats/dashboard";
 import ProtectedRoutes from "../components/protectedRoutes";
 import Tracking from "../pages/userTracking";
 import GuestDashBoard from "../pages/guest/dashboard/guestDashBoard";
+import GuestTracking from "../pages/guest/tracking/tracking";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: pathConfig.guestDashboard,
     element: <GuestDashBoard />,
+  },
+  {
+    path: pathConfig.guestTracking,
+    element: <GuestTracking />,
   },
   {
     path: pathConfig.signUp,

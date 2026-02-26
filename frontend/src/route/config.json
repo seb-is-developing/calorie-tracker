@@ -4,5 +4,6 @@
   "signUp": "/register",
   "dashboard": "/dashboard",
   "chart": "/chart",
-  "guestDashboard": "/guest-dashboard"
+  "guestDashboard": "/guest-dashboard",
+  "guestTracking": "/guest-tracking"
 }

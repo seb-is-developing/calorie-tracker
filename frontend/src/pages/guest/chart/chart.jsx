@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { PieChart } from "@mui/x-charts/PieChart";
 import ExceededCalories from "../../../components/exceededCalories";
-import "../chart/chart.css";
+import "../../userTracking/calorie-chart/chart.css";
 
 export default function GuestChart() {
   const userData = useSelector((state) => state.bodyStats);

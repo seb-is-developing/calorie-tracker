@@ -73,6 +73,13 @@ export default function SignUp() {
         <form onSubmit={handleSubmit} className="form">
           <button
             type="button"
+            onClick={() => navigate(pathConfig.home)}
+            className="exit-button"
+          >
+            X
+          </button>
+          <button
+            type="button"
             onClick={() => navigate(pathConfig.guestDashboard)}
             className="guest-button"
           >

@@ -79,6 +79,7 @@
 
 .icon-link {
   transition: transform 0.2s;
+  pointer-events: none;
 }
 
 .icon-link:hover {

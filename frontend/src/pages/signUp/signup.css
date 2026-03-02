@@ -10,6 +10,7 @@
 
 /* SIGN UP FORM CARD */
 .form {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,6 +23,28 @@
   max-width: 460px;
 }
 
+.guest-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #2d6a4f;
+  background-color: transparent;
+  color: #2d6a4f;
+  font-family: "Outfit";
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.guest-button:hover {
+  background-color: #2d6a4f;
+  color: white;
+}
+
 /* TITLE */
 .form-title {
   font-family: "Outfit";
@@ -32,6 +55,7 @@
   text-align: center;
   text-decoration: none;
   text-shadow: 0 6px 20px rgba(45, 106, 79, 0.25);
+  width: 100%;
 }
 
 /* FIELD GROUP */

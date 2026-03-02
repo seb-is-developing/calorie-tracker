@@ -71,6 +71,13 @@ export default function SignUp() {
       <MainNavBar />
       <div className="sign-up">
         <form onSubmit={handleSubmit} className="form">
+          <button
+            type="button"
+            onClick={() => navigate(pathConfig.guestDashboard)}
+            className="guest-button"
+          >
+            Continue as Guest
+          </button>
           <h1 className="form-title">READY TO START!</h1>
           <div className="fields">
             <label className="label">First Name:</label>

@@ -17,16 +17,17 @@ export default function HeroSection() {
             tracking. Monitor your meals, set goals, and track your progress to
             make informed, healthier choices every day.
           </p>
-          <button onClick={handleClick} className="button-register">
-            READY!
-          </button>
-          <button
+           <button
             onClick={() => navigate(pathConfig.guestDashboard)}
             className="button-register"
             style={{ marginLeft: "10px" }}
           >
             TRY IT OUT!
           </button>
+          <button onClick={handleClick} className="button-register">
+            READY!
+          </button>
+      
         </div>
       </div>
       <div className="image">

@@ -4,7 +4,6 @@
   justify-content: space-between;
   background: rgba(27, 67, 50, 0.9); /* dark green slate */
   padding: 20px;
-  margin-bottom: 70px;
 }
 
 .user-nav-title {
@@ -26,6 +25,7 @@
   cursor: pointer;
   position: relative;
   transition: color 0.25s ease;
+  margin-left: 15px;
 }
 
 .logout-button::after {

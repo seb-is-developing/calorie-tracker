@@ -3,5 +3,7 @@
   "login": "/login",
   "signUp": "/register",
   "dashboard": "/dashboard",
-  "chart": "/chart"
+  "chart": "/chart",
+  "guestDashboard": "/guest-dashboard",
+  "guestTracking": "/guest-tracking"
 }

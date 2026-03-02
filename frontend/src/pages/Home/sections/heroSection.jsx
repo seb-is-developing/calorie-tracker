@@ -20,6 +20,13 @@ export default function HeroSection() {
           <button onClick={handleClick} className="button-register">
             READY!
           </button>
+          <button
+            onClick={() => navigate(pathConfig.guestDashboard)}
+            className="button-register"
+            style={{ marginLeft: "10px" }}
+          >
+            TRY IT OUT!
+          </button>
         </div>
       </div>
       <div className="image">

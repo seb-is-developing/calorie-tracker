@@ -6,10 +6,21 @@ import LogIn from "../pages/logIn";
 import Dashboard from "../pages/bodyStats/dashboard";
 import ProtectedRoutes from "../components/protectedRoutes";
 import Tracking from "../pages/userTracking";
+import GuestDashBoard from "../pages/guest/dashboard/guestDashBoard";
+import GuestTracking from "../pages/guest/tracking/tracking";
+
 const router = createBrowserRouter([
   {
     path: pathConfig.home,
     element: <Home />,
+  },
+  {
+    path: pathConfig.guestDashboard,
+    element: <GuestDashBoard />,
+  },
+  {
+    path: pathConfig.guestTracking,
+    element: <GuestTracking />,
   },
   {
     path: pathConfig.signUp,

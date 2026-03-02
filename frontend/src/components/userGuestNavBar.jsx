@@ -12,13 +12,13 @@ export default function UserGuestNavBar() {
           className="logout-button"
           onClick={() => navigate(pathConfig.home)}
         >
-          home
+          Home
         </button>
         <button
           className="logout-button"
           onClick={() => navigate(pathConfig.signUp)}
         >
-          sign up
+          Sign Up
         </button>
       </div>
     </div>

@@ -10,7 +10,7 @@ export default function UserNavBar() {
         className="logout-button"
         onClick={() => navigate(pathConfig.login)}
       >
-        logout
+        Logout
       </button>
     </div>
   );
